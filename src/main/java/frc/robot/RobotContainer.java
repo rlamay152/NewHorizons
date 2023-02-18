@@ -6,8 +6,6 @@ package frc.robot;
 
 import java.util.List;
 
-import com.swervedrivespecialties.swervelib.DriveController;
-
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -21,17 +19,13 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DefaultDriveCommand;
-import frc.robot.commands.alignVisonPID;
 import frc.robot.commands.armCommad;
 import frc.robot.commands.armSetPosition;
 import frc.robot.commands.changeSpeed;
-import frc.robot.commands.selfRight;
 import frc.robot.commands.pneumaticsCommad;
 import frc.robot.commands.selfRight;
 import frc.robot.subsystems.ArmSubsystem;
@@ -48,8 +42,6 @@ public class RobotContainer {
   private final JoystickButton zeroGyro = new JoystickButton(drivController, XboxController.Button.kStart.value);
 
 
-
-
   public RobotContainer() {
     // Set up the default command for the drivetrain.++
     // The controls are for field-oriented driving:
@@ -58,9 +50,9 @@ public class RobotContainer {
     // Right stick X axis -> rotation
     m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
             m_drivetrainSubsystem,
-            () -> -modifyAxis(drivController.getLeftY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(drivController.getLeftX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(drivController.getRightX()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
+            () -> -modifyAxis((drivController.getLeftY()) * Constants.driverSpeed) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis((drivController.getLeftX()) * Constants.driverSpeed) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis((drivController.getRightX()) * Constants.driverSpeed) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
     ));
 
     // Configure the button bindings
@@ -78,7 +70,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // Back button zeros the gyroscope
+    // Back button zeros the gyroscope.
     zeroGyro.onTrue(new InstantCommand(() -> m_drivetrainSubsystem.zeroGyroscope()));
 
     //closeGrabber.onTrue(new InstantCommand(() -> pneumaticsSubsystem.openandclose(false)));

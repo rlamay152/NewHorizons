@@ -32,6 +32,7 @@ public final class Constants {
     public static final double wheelCircumference = Units.inchesToMeters(4.0);
 
     public static final double angleGearRatio = (12.8 / 1.0);
+    public static double driverSpeed = 0.0;
 
     public static double falconToMeters(double positionCounts, double circumference, double GearRatio){
         return positionCounts * (circumference / (GearRatio * 2048.0));

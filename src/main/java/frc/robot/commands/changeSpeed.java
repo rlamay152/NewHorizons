@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class changeSpeed extends CommandBase {
@@ -20,7 +21,7 @@ public class changeSpeed extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    DrivetrainSubsystem.speed = 0.85;
+    Constants.driverSpeed = 0.85;
   }
 
   // Called once the command ends or is interrupted.
