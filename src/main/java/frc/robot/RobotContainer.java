@@ -172,11 +172,9 @@ public class RobotContainer {
           new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(trajectory1.getInitialPose())),
           new print("Positioning Arm: "),
           new armSetPosition(armSubsystem, 1706),
-          //new print("Moving: "),
+          new print("Moving: "),
 
-          //swerveControllerCommand2,
-
-          //swerveControllerCommand1,
+          swerveControllerCommand1,
 
           //new InstantCommand(() -> pneumaticsSubsystem.openandclose(true, 2)),
           new print("Opening Arm: "),
