@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class PneumaticsSubsystem extends SubsystemBase {
@@ -28,6 +29,18 @@ public void openandclose(boolean Open){
     } else {
       solenoidClaw.set(DoubleSolenoid.Value.kReverse);
     }
+
+
+
+}
+
+public void openandclose(boolean Open, double seconds){
+  Timer.delay(seconds);
+  if(Open){
+    solenoidClaw.set(DoubleSolenoid.Value.kForward);
+  } else {
+    solenoidClaw.set(DoubleSolenoid.Value.kReverse);
+  }
 
 
 

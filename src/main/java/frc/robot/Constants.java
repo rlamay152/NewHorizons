@@ -32,7 +32,7 @@ public final class Constants {
     public static final double wheelCircumference = Units.inchesToMeters(4.0);
 
     public static final double angleGearRatio = (12.8 / 1.0);
-    public static double driverSpeed = 0.0;
+    public static double driverSpeed = 0.6;
 
     public static double falconToMeters(double positionCounts, double circumference, double GearRatio){
         return positionCounts * (circumference / (GearRatio * 2048.0));
@@ -61,8 +61,8 @@ public final class Constants {
     public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 60;
     public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(341.1);
 
-    public static final double kPXController = 1.35;
-    public static final double kPYController = 1.75;
+    public static final double kPXController = .45;
+    public static final double kPYController = .45;
     public static final double kPThetaConroller = 3;
     public static final double kPSelfRight = 1.775;
     public static final double kPLimelite = 1.775;

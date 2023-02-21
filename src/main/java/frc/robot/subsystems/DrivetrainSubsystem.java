@@ -223,9 +223,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
                 m_pigeonYaw = m_pigeon.getYaw();
                 m_pigeonRoll = m_pigeon.getRoll();
 
-                System.out.println("Gyro Pitch: " + m_pigeon.getPitch());
-                System.out.println("Gyro Roll: " + m_pigeon.getRoll());
-                System.out.println("Gyro Yaw: " + m_pigeon.getYaw());
+                // System.out.println("Gyro Pitch: " + m_pigeon.getPitch());
+                // System.out.println("Gyro Roll: " + m_pigeon.getRoll());
+                // System.out.println("Gyro Yaw: " + m_pigeon.getYaw());
 
 
                 field.setRobotPose(odometer.getPoseMeters());
