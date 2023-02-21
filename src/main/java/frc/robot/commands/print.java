@@ -4,35 +4,40 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.subsystems.DrivetrainSubsystem;
 
-public class changeSpeed extends CommandBase {
-  /** Creates a new changeSpeed. */
-  public changeSpeed() {
+public class print extends CommandBase {
+  /** Creates a new print. */
+  private String thingToPrint;
+  private Timer m_timer = new Timer();
+  public print(String thingToPrint) {
     // Use addRequirements() here to declare subsystem dependencies.
+    this.thingToPrint = thingToPrint;
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_timer.reset();
+    m_timer.start();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Constants.driverSpeed = 0.85;
+    System.out.println(thingToPrint);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Constants.driverSpeed = 0.6;
+    m_timer.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return m_timer.hasElapsed(0.5);
   }
 }
