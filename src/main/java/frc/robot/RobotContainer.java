@@ -16,6 +16,8 @@ import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -44,6 +46,8 @@ public class RobotContainer {
   private final XboxController armController = new XboxController(1);
   private final JoystickButton zeroGyro = new JoystickButton(drivController, XboxController.Button.kStart.value);
 
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
+
 
   public RobotContainer() {
     // Set up the default command for the drivetrain.++
@@ -57,6 +61,8 @@ public class RobotContainer {
             () -> -modifyAxis((drivController.getLeftX()) * Constants.driverSpeed) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
             () -> -modifyAxis((drivController.getRightX()) * Constants.driverSpeed) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
     ));
+    m_chooser.setDefaultOption("Middle Auton", getAutonomousCommand());
+    SmartDashboard.putData(m_chooser);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -119,18 +125,18 @@ public class RobotContainer {
     Trajectory trajectory1 = TrajectoryGenerator.generateTrajectory(
       new Pose2d(0, 0, new Rotation2d(0)), 
       List.of(
-        new Translation2d(-1.0, -0.1),
-        new Translation2d(0.7, 0.1)
+        //new Translation2d(-1.0, -0.1),
+        //new Translation2d(0.7, 0.1)
       ), 
-      new Pose2d(0.7, 0.1, Rotation2d.fromDegrees(0)), 
+      new Pose2d(0.5, 0.1, Rotation2d.fromDegrees(0)), 
       trajectoryConfig);
 
       Trajectory trajectory2 = TrajectoryGenerator.generateTrajectory(
-        new Pose2d(0.69, 0.1, new Rotation2d(0)), 
+        new Pose2d(0, 0, new Rotation2d(0)), 
         List.of(
-          new Translation2d(-2.69, -0.1)
+          new Translation2d(-2.5, -0.1)
         ), 
-        new Pose2d(-2.0, 0.0, Rotation2d.fromDegrees(0)), 
+        new Pose2d(-1.0, 0.0, Rotation2d.fromDegrees(0)), 
         trajectoryConfig);
 
       // 3. Define PID controllers for tracking trajectory
@@ -167,19 +173,21 @@ public class RobotContainer {
           //new InstantCommand(() -> pneumaticsSubsystem.openandclose(false)),
           //new InstantCommand(() -> m_drivetrainSubsystem.zeroGyroscope()),
           new InstantCommand(() -> pneumaticsSubsystem.openandclose(false)),
+          new WaitCommand(0.5),
           //new pneumaticsCommad(pneumaticsSubsystem, true),
          //new RunCommand (() -> armSubsystem.setMotor(autonPID.calculate(ArmSubsystem.getPosition(), 1706))),
           new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(trajectory1.getInitialPose())),
-          new print("Positioning Arm: "),
+          //new print("Positioning Arm: "),
           new armSetPosition(armSubsystem, 1706),
-          new print("Moving: "),
+          //new print("Moving: "),
 
           swerveControllerCommand1,
 
           //new InstantCommand(() -> pneumaticsSubsystem.openandclose(true, 2)),
-          new print("Opening Arm: "),
-          new autonPneumaticsCommand(pneumaticsSubsystem, true),
-          new print("Moving Again: "),
+          //new print("Opening Arm: "),
+          new InstantCommand(() -> pneumaticsSubsystem.openandclose(true)),
+          new WaitCommand(0.5),
+          //new print("Moving Again: "),
           swerveControllerCommand2,
           new InstantCommand(() -> m_drivetrainSubsystem.stopModules()));
   }
