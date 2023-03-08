@@ -27,7 +27,7 @@ public class changeSpeed extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Constants.driverSpeed = 0.6;
+    Constants.driverSpeed = 0.75;
   }
 
   // Returns true when the command should end.

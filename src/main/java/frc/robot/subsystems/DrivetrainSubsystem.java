@@ -107,12 +107,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
         private SwerveModuleState[] states;
 
         public DrivetrainSubsystem() {
-                ShuffleboardTab shuffleboardTab = Shuffleboard.getTab("Drivetrain");
+                //ShuffleboardTab shuffleboardTab = Shuffleboard.getTab("Drivetrain");
 
         m_frontLeftModule = new MkSwerveModuleBuilder()
-                .withLayout(shuffleboardTab.getLayout("Front Left Module", BuiltInLayouts.kList)
-                        .withSize(2, 4)
-                        .withPosition(0, 0))
+                // .withLayout(shuffleboardTab.getLayout("Front Left Module", BuiltInLayouts.kList)
+                //         .withSize(2, 4)
+                //         .withPosition(0, 0))
                 .withGearRatio(SdsModuleConfigurations.MK4_L1)
                 .withDriveMotor(MotorType.FALCON, Constants.FRONT_LEFT_MODULE_DRIVE_MOTOR)
                 .withSteerMotor(MotorType.FALCON, Constants.FRONT_LEFT_MODULE_STEER_MOTOR)
@@ -121,9 +121,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
                 .build();
 
         m_frontRightModule = new MkSwerveModuleBuilder()
-                .withLayout(shuffleboardTab.getLayout("Front Right Module", BuiltInLayouts.kList)
-                        .withSize(2, 4)
-                        .withPosition(2, 0))
+                // .withLayout(shuffleboardTab.getLayout("Front Right Module", BuiltInLayouts.kList)
+                //         .withSize(2, 4)
+                //         .withPosition(2, 0))
                 .withGearRatio(SdsModuleConfigurations.MK4_L1)
                 .withDriveMotor(MotorType.FALCON, Constants.FRONT_RIGHT_MODULE_DRIVE_MOTOR)
                 .withSteerMotor(MotorType.FALCON, Constants.FRONT_RIGHT_MODULE_STEER_MOTOR)
@@ -132,9 +132,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
                 .build();
 
         m_backLeftModule = new MkSwerveModuleBuilder()
-                .withLayout(shuffleboardTab.getLayout("Back Left Module", BuiltInLayouts.kList)
-                        .withSize(2, 4)
-                        .withPosition(4, 0))
+                // .withLayout(shuffleboardTab.getLayout("Back Left Module", BuiltInLayouts.kList)
+                //         .withSize(2, 4)
+                //         .withPosition(4, 0))
                 .withGearRatio(SdsModuleConfigurations.MK4_L1)
                 .withDriveMotor(MotorType.FALCON, Constants.BACK_LEFT_MODULE_DRIVE_MOTOR)
                 .withSteerMotor(MotorType.FALCON, Constants.BACK_LEFT_MODULE_STEER_MOTOR)
@@ -143,9 +143,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
                 .build();
 
         m_backRightModule = new MkSwerveModuleBuilder()
-                .withLayout(shuffleboardTab.getLayout("Back Right Module", BuiltInLayouts.kList)
-                        .withSize(2, 4)
-                        .withPosition(6, 0))
+                // .withLayout(shuffleboardTab.getLayout("Back Right Module", BuiltInLayouts.kList)
+                //         .withSize(2, 4)
+                //         .withPosition(6, 0))
                 .withGearRatio(SdsModuleConfigurations.MK4_L1)
                 .withDriveMotor(MotorType.FALCON, Constants.BACK_RIGHT_MODULE_DRIVE_MOTOR)
                 .withSteerMotor(MotorType.FALCON, Constants.BACK_RIGHT_MODULE_STEER_MOTOR)
@@ -153,12 +153,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
                 .withSteerOffset(Constants.BACK_RIGHT_MODULE_STEER_OFFSET)
                 .build();
 
-                ShuffleboardTab gyro = Shuffleboard.getTab("Gyro");
+                //ShuffleboardTab gyro = .getTab("Gyro");
                                 
      
-                gyro.getLayout("Gyro", BuiltInLayouts.kList)
-                .withSize(2, 4)
-                .withPosition(6, 0);
+                // gyro.getLayout("Gyro", BuiltInLayouts.kList)
+                // .withSize(2, 4)
+                // .withPosition(6, 0);
                 m_pigeon.getYaw();
                 m_pigeon.getRoll();
                 m_pigeon.getPitch();
